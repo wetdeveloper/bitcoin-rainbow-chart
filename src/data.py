@@ -13,7 +13,8 @@ def log_func(x, a, b, c):
     return a * np.log(b + x) + c
 
 
-def get_data(file_path):
+def get_data(file_path,update_permission=False):
+    "update permission=False => don't update data anyways"
     """
     Load and preprocess data from a CSV file.
 
@@ -30,7 +31,7 @@ def get_data(file_path):
     # Calculate the difference in days between the last date and today
     diff_days = (pd.Timestamp.today() - raw_data["Date"].max()).days
 
-    if diff_days > 1:
+    if diff_days > 1 and update_permission:
         print(f"Data is {diff_days} days old. Updating...")
 
         # Get new data
