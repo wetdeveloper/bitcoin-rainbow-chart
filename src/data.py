@@ -26,8 +26,8 @@ def get_data(file_path,update_permission=False):
         np.ndarray: Fitted Y data.
     """
     raw_data = pd.read_csv(file_path)
+  
     raw_data["Date"] = pd.to_datetime(raw_data["Date"])
-
     # Calculate the difference in days between the last date and today
     diff_days = (pd.Timestamp.today() - raw_data["Date"].max()).days
 
@@ -53,7 +53,7 @@ def get_data(file_path,update_permission=False):
     ydata = np.log(raw_data["Value"])
 
     # Fit the logarithmic curve
-    popt, _ = curve_fit(log_func, xdata, ydata)
+    popt, _ = curve_fit(log_func, xdata, ydata,maxfev=40000)
 
     return raw_data, popt
 
