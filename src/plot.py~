@@ -129,6 +129,7 @@ def plot_price(ax, raw_data):
         label="BTC Price",
     )[0]
 
+
 def y_format(y, _):
     """Custom formatter for Y-axis labels."""
     if y < 1:
